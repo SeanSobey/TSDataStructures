@@ -1,0 +1,30 @@
+{
+	"name": "jsplayground",
+	"version": "1.0.0",
+	"description": "Common Data Structures implemented in typescript.",
+	"main": "dist/app.js",
+	"scripts": {
+		"start": "node dist/app.js",
+		"build": "tsc",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"bugs": {
+		"url": "https://github.com/SeanSobey/TSDataStructures/issues",
+		"email": "sean.m.sobey@gmail.com"
+	},
+	"author": {
+		"name": "Sean Sobey",
+		"email": "sean.m.sobey@gmail.com"
+	},
+	"homepage": "https://github.com/SeanSobey/TSDataStructures",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/SeanSobey/TSDataStructures.git"
+	},
+	"readme": "README.md",
+	"license": "MIT",
+	"dependencies": {
+		"tslib": "^1.8.1",
+		"typescript": "^2.6.2"
+	}
+}
