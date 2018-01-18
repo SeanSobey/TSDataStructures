@@ -1,0 +1,14 @@
+{
+	"mocha.files.glob": "src/**/*.spec.ts",
+	"mocha.runTestsOnSave": "true",
+	"mocha.options": {
+		"checkLeaks": true,
+		"throwDeprecation": true,
+		"traceDeprecation": true,
+		"traceWarnings": true,
+		"allowUncaught": true
+	},
+	"mocha.requires": [
+		"ts-node/register"
+	]
+}
