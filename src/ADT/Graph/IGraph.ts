@@ -1,5 +1,5 @@
-import { ICollection } from 'src/ADT/ICollection';
-import { INode } from 'src/ADT/Graph/INode';
+import { ICollection } from '../ICollection';
+import { INode } from './INode';
 
 //https://en.wikipedia.org/wiki/Graph_(abstract_data_type)
 export interface IGraph<T> extends ICollection<INode<T>> {

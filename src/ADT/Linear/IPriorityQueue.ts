@@ -1,4 +1,4 @@
-import { ICollection } from 'src/ADT/ICollection';
+import { ICollection } from '../ICollection';
 
 //https://en.wikipedia.org/wiki/Priority_queue
 export interface IPriorityQueue<T> extends ICollection<T> {

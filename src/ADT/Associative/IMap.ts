@@ -1,4 +1,4 @@
-import { ICollection } from 'src/ADT/ICollection';
+import { ICollection } from '../ICollection';
 
 //https://en.wikipedia.org/wiki/Associative_array
 export interface IMap<TKey, TValue> extends ICollection<IKeyValuePair<TKey, TValue>> {

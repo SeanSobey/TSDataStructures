@@ -1,7 +1,16 @@
 export interface ICollection<T> extends Iterable<T> {
+	/**
+	 * Test whether or not a collection is empty.
+	 * 
+	 * @returns {boolean} 
+	 * @memberof ICollection
+	 */
 	isEmpty(): boolean;
+	/**
+	 * The number of items in the collection.
+	 * 
+	 * @returns {number} 
+	 * @memberof ICollection
+	 */
 	count(): number;
-	add(item: T): void;
-	remove(item: T): void;
-	clear(): void;
 }
