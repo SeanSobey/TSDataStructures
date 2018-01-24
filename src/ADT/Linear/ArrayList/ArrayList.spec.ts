@@ -8,14 +8,14 @@ describe(ArrayList.name, () => {
 			assert.ok(new ArrayList());
 		});
 		it('works with iterable', () => {
-			assert.ok(new ArrayList([1,2,3]));
+			assert.ok(new ArrayList([1, 2, 3]));
 		});
 	});
 	describe(Symbol.iterator.toString(), () => {
 		const iterable = [1, 2, 3];
 		it('works', () => {
 			const arrayList = new ArrayList(iterable);
-			assert.deepEqual(Array.from(arrayList), iterable)
+			assert.deepEqual(Array.from(arrayList), iterable);
 		});
 	});
 	describe(ArrayList.prototype.isEmpty.name, () => {
@@ -30,25 +30,37 @@ describe(ArrayList.name, () => {
 	});
 	describe(ArrayList.prototype.count.name, () => {
 		it('returns count', () => {
-			const arrayList = new ArrayList([1,2,3]);
+			const arrayList = new ArrayList([1, 2, 3]);
 			assert.equal(arrayList.count(), 3);
 		});
 	});
 	describe(ArrayList.prototype.prepend.name, () => {
 		const item = 1;
-		it('adds item to start', () => {
-			const arrayList = new ArrayList<number>([0]);
-			arrayList.prepend(item);
-			const array = Array.from(arrayList);
+		it('with empty list, adds item to start', () => {
+			const linkedList = new ArrayList<number>([]);
+			linkedList.prepend(item);
+			const array = Array.from(linkedList);
+			assert.equal(array[0], item);
+		});
+		it('with non-empty list, adds item to start', () => {
+			const linkedList = new ArrayList<number>([0]);
+			linkedList.prepend(item);
+			const array = Array.from(linkedList);
 			assert.equal(array[0], item);
 		});
 	});
 	describe(ArrayList.prototype.append.name, () => {
 		const item = 1;
-		it('adds item to end', () => {
-			const arrayList = new ArrayList<number>([0]);
-			arrayList.append(item);
-			const array = Array.from(arrayList);
+		it('with empty list, adds item to end', () => {
+			const linkedList = new ArrayList<number>([]);
+			linkedList.append(item);
+			const array = Array.from(linkedList);
+			assert.equal(array[0], item);
+		});
+		it('with non-empty list, adds item to end', () => {
+			const linkedList = new ArrayList<number>([0]);
+			linkedList.append(item);
+			const array = Array.from(linkedList);
 			assert.equal(array[1], item);
 		});
 	});
@@ -59,8 +71,8 @@ describe(ArrayList.name, () => {
 			assert.throws(() => arrayList.head());
 		});
 		it('returns first element', () => {
-			const arrayList = new ArrayList<number>([0,0,0]);
-			arrayList.append(item)
+			const arrayList = new ArrayList<number>([0, 0, 0]);
+			arrayList.prepend(item);
 			assert.equal(arrayList.head(), item);
 		});
 	});
@@ -71,10 +83,9 @@ describe(ArrayList.name, () => {
 			assert.throws(() => arrayList.tail());
 		});
 		it('returns tail', () => {
-			const iterable = [0, 0, 0];
-			const arrayList = new ArrayList<number>(iterable);
+			const arrayList = new ArrayList<number>([1, 2, 3]);
 			arrayList.append(item);
-			assert.deepEqual(Array.from(arrayList.tail()), iterable);
+			assert.deepEqual(Array.from(arrayList.tail()), [2, 3]);
 		});
 	});
 });

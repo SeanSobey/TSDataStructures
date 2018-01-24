@@ -7,7 +7,7 @@ export class ArrayList<T> implements IList<T> {
 			if (typeof args === 'number') {
 				this._array = new Array(args);
 			} else {
-				this._array = Array.from(args)
+				this._array = Array.from(args);
 			}
 		} else {
 			this._array = new Array();
@@ -32,12 +32,12 @@ export class ArrayList<T> implements IList<T> {
 		if (this._array.length === 0) {
 			throw new Error('List is empty');
 		}
-		return this._array[this._array.length - 1];
+		return this._array[0];
 	}
-	public tail(): IList<T> {
+	public tail(): ArrayList<T> {
 		if (this._array.length === 0) {
 			throw new Error('List is empty');
 		}
-		return new ArrayList(this._array.slice(0, this._array.length - 1));
+		return new ArrayList(this._array.slice(1, this._array.length - 1));
 	}
 }
