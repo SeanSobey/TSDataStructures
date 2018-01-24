@@ -1,9 +1,17 @@
-import { IList } from './IList';
+import { IList } from '../IList';
 
 export class ArrayList<T> implements IList<T> {
 	private readonly _array: Array<T>;
-	constructor(iterable?: Iterable<T>) {
-		this._array = iterable ? Array.from(iterable) : [];
+	constructor(args?: Iterable<T> | number) {
+		if (args) {
+			if (typeof args === 'number') {
+				this._array = new Array(args);
+			} else {
+				this._array = Array.from(args)
+			}
+		} else {
+			this._array = new Array();
+		}
 	}
 	public [Symbol.iterator](): Iterator<T> {
 		return this._array[Symbol.iterator]();
