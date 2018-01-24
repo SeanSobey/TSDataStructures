@@ -35,6 +35,8 @@
 	"devDependencies": {
 		"mocha": "^5.0.0",
 		"tslint": "^5.9.1",
-		"tslint-eslint-rules": "^4.1.1"
+		"tslint-divid": "^1.3.0",
+		"tslint-eslint-rules": "^4.1.1",
+		"tslint-immutable": "^4.5.1"
 	}
 }
