@@ -16,11 +16,27 @@
 		},
 		{
 			"type": "npm",
+			"script": "watch-build",
+			"group": "build",
+			"isBackground": true,
+			"problemMatcher": [
+				"$tsc"
+			]
+		},
+		{
+			"type": "npm",
 			"script": "test",
 			"group": {
 				"kind": "test",
 				"isDefault": true
 			},
+			"problemMatcher": []
+		},
+		{
+			"type": "npm",
+			"script": "watch-test",
+			"isBackground": true,
+			"group": "test",
 			"problemMatcher": []
 		}
 	]

@@ -3,4 +3,3 @@
 --trace-deprecation
 --trace-warnings
 --allow-uncaught
---require ts-node/register

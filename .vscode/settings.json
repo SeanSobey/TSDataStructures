@@ -1,5 +1,5 @@
 {
-	"mocha.files.glob": "src/**/*.spec.ts",
+	"mocha.files.glob": "dist/**/*.spec.js",
 	"mocha.runTestsOnSave": "true",
 	"mocha.options": {
 		"checkLeaks": true,
@@ -9,6 +9,5 @@
 		"allowUncaught": true
 	},
 	"mocha.requires": [
-		"ts-node/register"
 	]
 }
