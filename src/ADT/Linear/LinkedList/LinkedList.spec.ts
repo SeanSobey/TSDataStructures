@@ -11,7 +11,7 @@ describe(LinkedList.name, () => {
 			assert.ok(new LinkedList([1, 2, 3]));
 		});
 	});
-	xdescribe(Symbol.iterator.toString(), () => {
+	describe(Symbol.iterator.toString(), () => {
 		const iterable = [1, 2, 3];
 		it('works', () => {
 			const linkedList = new LinkedList(iterable);
