@@ -1,5 +1,5 @@
 {
-	"name": "jsplayground",
+	"name": "ts-data-structures",
 	"version": "1.0.0",
 	"description": "Common Data Structures implemented in typescript.",
 	"main": "dist/app.js",
