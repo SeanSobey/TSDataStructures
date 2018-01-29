@@ -7,6 +7,13 @@ export interface ListConstructor<T> {
 //https://en.wikipedia.org/wiki/List_(abstract_data_type)
 export interface IList<T> extends ICollection<T> {
 	/**
+	 * Get a element at a specific index.
+	 *
+	 * @returns T
+	 * @memberof IList
+	 */
+	atIndex(index: number): T;
+	/**
 	 * Add an element to the start of the list.
 	 *
 	 * @param {T} item The item.

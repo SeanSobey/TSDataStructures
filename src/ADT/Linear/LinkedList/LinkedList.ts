@@ -27,6 +27,19 @@ export class LinkedList<T> implements IList<T> {
 		}
 		return count;
 	}
+	public atIndex(index: number): T {
+		const iterator = new LinkedListIterator<T>(this._head);
+		for (let i = 0; i < index; i++) {
+			const iteratorResult = iterator.next();
+			if (iteratorResult.done) {
+				throw new Error('Index out of range');
+			}
+		}
+		if (!iterator.node) {
+			throw new Error('Index out of range');
+		}
+		return iterator.node.data;
+	}
 	public prepend(item: T): void {
 		this._head = new LinkedListNode<T>(this._head, item);
 	}

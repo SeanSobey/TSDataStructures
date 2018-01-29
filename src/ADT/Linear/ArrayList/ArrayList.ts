@@ -22,6 +22,12 @@ export class ArrayList<T> implements IList<T> {
 	public count(): number {
 		return this._array.length;
 	}
+	public atIndex(index: number): T {
+		if (index >= this._array.length) {
+			throw new Error('Index out of range');
+		}
+		return this._array[index];
+	}
 	public prepend(item: T): void {
 		this._array.unshift(item);
 	}

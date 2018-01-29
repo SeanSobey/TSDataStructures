@@ -35,6 +35,16 @@ export function spec(listCtor: ListConstructor<number>): void {
 				assert.equal(arrayList.count(), 3);
 			});
 		});
+		describe(listCtor.prototype.atIndex.name, () => {
+			it('throws when out of range', () => {
+				const arrayList = new listCtor();
+				assert.throws(() => arrayList.atIndex(0));
+			});
+			it('returns element at index', () => {
+				const arrayList = new listCtor([0, 1, 2, 3]);
+				assert.equal(arrayList.atIndex(2), 2);
+			});
+		});
 		describe(listCtor.prototype.prepend.name, () => {
 			const item = 1;
 			it('with empty list, adds item to start', () => {
