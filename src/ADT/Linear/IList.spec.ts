@@ -1,10 +1,6 @@
 import * as assert from 'assert';
 
-import { IList } from './IList';
-
-interface ListConstructor<T> {
-	new(iterable?: Iterable<T>): IList<T>;
-}
+import { ListConstructor } from './IList';
 
 export function spec(listCtor: ListConstructor<number>): void {
 	describe(listCtor.name, () => {

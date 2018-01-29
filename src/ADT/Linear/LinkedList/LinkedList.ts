@@ -1,6 +1,7 @@
 import { IList } from '../IList';
 import { LinkedListNode } from './LinkedListNode';
 import { LinkedListIterator } from './LinkedListIterator';
+import { ICollection } from 'src/ADT/ICollection';
 
 export class LinkedList<T> implements IList<T> {
 	private _head: LinkedListNode<T> | null;

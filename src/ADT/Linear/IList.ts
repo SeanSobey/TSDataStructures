@@ -1,5 +1,9 @@
 import { ICollection } from '../ICollection';
 
+export interface ListConstructor<T> {
+	new(iterable?: Iterable<T>): IList<T>;
+}
+
 //https://en.wikipedia.org/wiki/List_(abstract_data_type)
 export interface IList<T> extends ICollection<T> {
 	/**
