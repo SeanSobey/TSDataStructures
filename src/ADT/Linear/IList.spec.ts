@@ -1,6 +1,8 @@
 import * as assert from 'assert';
 
 import { ListConstructor } from './IList';
+import { IndexOutOfRangeError } from './IndexOutOfRangeError';
+import { EmptyListError } from './EmptyListError';
 
 export function spec(listCtor: ListConstructor<number>): void {
 	describe(listCtor.name, () => {
@@ -35,14 +37,37 @@ export function spec(listCtor: ListConstructor<number>): void {
 				assert.equal(arrayList.count(), 3);
 			});
 		});
-		describe(listCtor.prototype.atIndex.name, () => {
+		describe(listCtor.prototype.element.name, () => {
 			it('throws when out of range', () => {
 				const arrayList = new listCtor();
-				assert.throws(() => arrayList.atIndex(0));
+				assert.throws(() => arrayList.element(0), (error: Error) => error instanceof IndexOutOfRangeError);
 			});
 			it('returns element at index', () => {
 				const arrayList = new listCtor([0, 1, 2, 3]);
-				assert.equal(arrayList.atIndex(2), 2);
+				assert.equal(arrayList.element(2), 2);
+			});
+		});
+		describe(listCtor.prototype.insertAt.name, () => {
+			const item = 3;
+			it('throws when out of range', () => {
+				const arrayList = new listCtor();
+				assert.throws(() => arrayList.insertAt(1, item), (error: Error) => error instanceof IndexOutOfRangeError);
+			});
+			it('inserts element at index', () => {
+				const arrayList = new listCtor([0, 1, 2]);
+				arrayList.insertAt(2, item);
+				assert.deepEqual(Array.from(arrayList), [0, 1, 3, 2]);
+			});
+		});
+		describe(listCtor.prototype.removeAt.name, () => {
+			it('throws when out of range', () => {
+				const arrayList = new listCtor();
+				assert.throws(() => arrayList.removeAt(1), (error: Error) => error instanceof IndexOutOfRangeError);
+			});
+			it('inserts element at index', () => {
+				const arrayList = new listCtor([0, 1, 2]);
+				arrayList.removeAt(1);
+				assert.deepEqual(Array.from(arrayList), [0, 2]);
 			});
 		});
 		describe(listCtor.prototype.prepend.name, () => {
@@ -79,7 +104,7 @@ export function spec(listCtor: ListConstructor<number>): void {
 			const item = 1;
 			it('throws when empty', () => {
 				const arrayList = new listCtor();
-				assert.throws(() => arrayList.head());
+				assert.throws(() => arrayList.head(), (error: Error) => error instanceof EmptyListError);
 			});
 			it('returns first element', () => {
 				const arrayList = new listCtor([0, 0, 0]);
@@ -90,7 +115,7 @@ export function spec(listCtor: ListConstructor<number>): void {
 		describe(listCtor.prototype.tail.name, () => {
 			it('throws when empty', () => {
 				const arrayList = new listCtor();
-				assert.throws(() => arrayList.tail());
+				assert.throws(() => arrayList.tail(), (error: Error) => error instanceof EmptyListError);
 			});
 			it('returns tail', () => {
 				const arrayList = new listCtor([1, 2, 3]);

@@ -30,19 +30,19 @@ export class LinkedList<T> implements IList<T> {
 		}
 		return count;
 	}
-	public atIndex(index: number): T {
-		const iterator = new LinkedListIterator<T>(this._head);
-		// tslint:disable-next-line:no-let
-		for (let i = 0; i < index; i++) {
-			const iteratorResult = iterator.next();
-			if (iteratorResult.done) {
-				throw new IndexOutOfRangeError();
-			}
+	public element(index: number): T {
+		return this.nodeAt(index).data;
+	}
+	public insertAt(index: number, item: T): void {
+		const node = this.nodeAt(index - 1);
+		node.next = new LinkedListNode<T>(node.next, item);
+	}
+	public removeAt(index: number): void {
+		const node = this.nodeAt(index - 1);
+		if (node.next === null) {
+			throw new IndexOutOfRangeError(index, this.count());
 		}
-		if (!iterator.node) {
-			throw new IndexOutOfRangeError();
-		}
-		return iterator.node.data;
+		node.next = node.next.next;
 	}
 	public prepend(item: T): void {
 		this._head = new LinkedListNode<T>(this._head, item);
@@ -77,5 +77,19 @@ export class LinkedList<T> implements IList<T> {
 			tail.append(iterator.node.data);
 		}
 		return tail;
+	}
+	private nodeAt(index: number): LinkedListNode<T> {
+		const iterator = new LinkedListIterator<T>(this._head);
+		// tslint:disable-next-line:no-let
+		for (let i = 0; i < index; i++) {
+			const iteratorResult = iterator.next();
+			if (iteratorResult.done) {
+				throw new IndexOutOfRangeError(index, this.count());
+			}
+		}
+		if (!iterator.node) {
+			throw new IndexOutOfRangeError(index, this.count());
+		}
+		return iterator.node;
 	}
 }

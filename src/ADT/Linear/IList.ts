@@ -12,7 +12,22 @@ export interface IList<T> extends ICollection<T> {
 	 * @returns T
 	 * @memberof IList
 	 */
-	atIndex(index: number): T;
+	element(index: number): T;
+	/**
+	 * Insert an element at a specific index.
+	 *
+	 * @param {number} index The index.
+	 * @param {T} item The item.
+	 * @memberof IList
+	 */
+	insertAt(index: number, item: T): void;
+	/**
+	 * Remove an element at a specific index.
+	 *
+	 * @param {number} index The index.
+	 * @memberof IList
+	 */
+	removeAt(index: number): void;
 	/**
 	 * Add an element to the start of the list.
 	 *
