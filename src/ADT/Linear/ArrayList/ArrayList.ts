@@ -38,6 +38,6 @@ export class ArrayList<T> implements IList<T> {
 		if (this._array.length === 0) {
 			throw new Error('List is empty');
 		}
-		return new ArrayList(this._array.slice(1, this._array.length - 1));
+		return new ArrayList(this._array.slice(1, this._array.length));
 	}
 }
