@@ -1,9 +1,11 @@
 import { IList } from '../IList';
 import { LinkedListNode } from './LinkedListNode';
 import { LinkedListIterator } from './LinkedListIterator';
-import { ICollection } from 'src/ADT/ICollection';
+import { EmptyListError } from '../EmptyListError';
+import { IndexOutOfRangeError } from '../IndexOutOfRangeError';
 
 export class LinkedList<T> implements IList<T> {
+	// tslint:disable-next-line:readonly-keyword
 	private _head: LinkedListNode<T> | null;
 	constructor(iterable?: Iterable<T>) {
 		this._head = null;
@@ -20,6 +22,7 @@ export class LinkedList<T> implements IList<T> {
 		return this._head === null;
 	}
 	public count(): number {
+		// tslint:disable-next-line:no-let
 		let count = 0;
 		const iterator = new LinkedListIterator<T>(this._head);
 		while (!iterator.next().done) {
@@ -29,14 +32,15 @@ export class LinkedList<T> implements IList<T> {
 	}
 	public atIndex(index: number): T {
 		const iterator = new LinkedListIterator<T>(this._head);
+		// tslint:disable-next-line:no-let
 		for (let i = 0; i < index; i++) {
 			const iteratorResult = iterator.next();
 			if (iteratorResult.done) {
-				throw new Error('Index out of range');
+				throw new IndexOutOfRangeError();
 			}
 		}
 		if (!iterator.node) {
-			throw new Error('Index out of range');
+			throw new IndexOutOfRangeError();
 		}
 		return iterator.node.data;
 	}
@@ -58,13 +62,13 @@ export class LinkedList<T> implements IList<T> {
 	}
 	public head(): T {
 		if (this._head === null) {
-			throw new Error('List is empty');
+			throw new EmptyListError();
 		}
 		return this._head.data;
 	}
 	public tail(): LinkedList<T> {
 		if (this._head === null) {
-			throw new Error('List is empty');
+			throw new EmptyListError();
 		}
 		const tail = new LinkedList<T>();
 		const iterator = new LinkedListIterator<T>(this._head);

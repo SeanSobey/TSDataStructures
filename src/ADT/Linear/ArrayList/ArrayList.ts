@@ -1,6 +1,9 @@
 import { IList } from '../IList';
+import { EmptyListError } from '../EmptyListError';
+import { IndexOutOfRangeError } from '../IndexOutOfRangeError';
 
 export class ArrayList<T> implements IList<T> {
+	// tslint:disable-next-line:readonly-array
 	private readonly _array: Array<T>;
 	constructor(args?: Iterable<T> | number) {
 		if (args) {
@@ -24,7 +27,7 @@ export class ArrayList<T> implements IList<T> {
 	}
 	public atIndex(index: number): T {
 		if (index >= this._array.length) {
-			throw new Error('Index out of range');
+			throw new IndexOutOfRangeError();
 		}
 		return this._array[index];
 	}
@@ -36,13 +39,13 @@ export class ArrayList<T> implements IList<T> {
 	}
 	public head(): T {
 		if (this._array.length === 0) {
-			throw new Error('List is empty');
+			throw new EmptyListError();
 		}
 		return this._array[0];
 	}
 	public tail(): ArrayList<T> {
 		if (this._array.length === 0) {
-			throw new Error('List is empty');
+			throw new EmptyListError();
 		}
 		return new ArrayList(this._array.slice(1, this._array.length));
 	}
