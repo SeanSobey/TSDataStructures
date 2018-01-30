@@ -5,6 +5,7 @@
 	"main": "dist/app.js",
 	"scripts": {
 		"start": "node dist/app.js",
+		"prebuild": "del-cli ./dist",
 		"build": "tsc",
 		"test": "mocha --opts ./mocha.opts dist/**/*.spec.js",
 		"debug-test": "node --inspect-brk=33295 --nolazy node_modules/mocha/bin/_mocha --opts ./mocha.opts dist/**/*.spec.js",
@@ -29,6 +30,7 @@
 	"dependencies": {
 		"@types/mocha": "^2.2.46",
 		"@types/node": "^9.3.0",
+		"del-cli": "^1.1.0",
 		"tslib": "^1.8.1",
 		"typescript": "^2.6.2"
 	},
