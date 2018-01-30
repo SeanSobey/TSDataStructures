@@ -34,15 +34,27 @@ export class DoublyLinkedList<T> implements IList<T> {
 		return this.nodeAt(index).data;
 	}
 	public insertAt(index: number, item: T): void {
+		if (index === 0) {
+			return this.prepend(item);
+		}
 		const node = this.nodeAt(index - 1);
 		node.next = new DoublyLinkedListNode<T>(node.next, node.previous, item);
 	}
 	public removeAt(index: number): void {
-		const node = this.nodeAt(index - 1);
-		if (node.next === null) {
+		if (index === 0) {
+			if (!this._head) {
+				throw new IndexOutOfRangeError(index, this.count());
+			}
+			this._head = this._head.next;
+			return;
+		}
+		const node = this.nodeAt(index);
+		if (node === null) {
 			throw new IndexOutOfRangeError(index, this.count());
 		}
-		node.next = node.next.next;
+		if (node.previous) {
+			node.previous.next = node.next;
+		}
 	}
 	public prepend(item: T): void {
 		this._head = new DoublyLinkedListNode<T>(this._head, null, item);

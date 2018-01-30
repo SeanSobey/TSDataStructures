@@ -34,10 +34,20 @@ export class LinkedList<T> implements IList<T> {
 		return this.nodeAt(index).data;
 	}
 	public insertAt(index: number, item: T): void {
+		if (index === 0) {
+			return this.prepend(item);
+		}
 		const node = this.nodeAt(index - 1);
 		node.next = new LinkedListNode<T>(node.next, item);
 	}
 	public removeAt(index: number): void {
+		if (index === 0) {
+			if (!this._head) {
+				throw new IndexOutOfRangeError(index, this.count());
+			}
+			this._head = this._head.next;
+			return;
+		}
 		const node = this.nodeAt(index - 1);
 		if (node.next === null) {
 			throw new IndexOutOfRangeError(index, this.count());
