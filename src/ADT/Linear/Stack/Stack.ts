@@ -19,17 +19,17 @@ export abstract class Stack<T> implements IStack<T> {
 		this._list.append(item);
 	}
 	public pop(): T {
-		const index = this._list.count();
-		if (index === 0) {
+		const count = this._list.count();
+		if (count === 0) {
 			throw new EmptyCollectionError();
 		}
-		return this._list.removeAt(index - 1);
+		return this._list.removeAt(count - 1);
 	}
 	public peek(): T {
-		const index = this._list.count();
-		if (index === 0) {
+		const count = this._list.count();
+		if (count === 0) {
 			throw new EmptyCollectionError();
 		}
-		return this._list.element(index);
+		return this._list.element(count - 1);
 	}
 }

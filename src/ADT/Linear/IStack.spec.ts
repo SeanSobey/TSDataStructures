@@ -38,6 +38,20 @@ export function spec(stackConstructor: StackConstructor<number>): void {
 			});
 		});
 		describe(stackConstructor.prototype.peek.name, () => {
+			it('throws error when empty', () => {
+				const stack = new stackConstructor();
+				assert.throws(() => stack.peek(), (error: Error) => error instanceof EmptyCollectionError);
+			});
+			it('returns top item', () => {
+				const stack = new stackConstructor(iterable);
+				assert.equal(stack.peek(), 3);
+			});
+			it('doesn\'t remove item', () => {
+				const stack = new stackConstructor(iterable);
+				stack.peek();
+				const array = Array.from(stack);
+				assert.deepEqual(array, [0, 1, 2, 3]);
+			});
 		});
 	});
 }
