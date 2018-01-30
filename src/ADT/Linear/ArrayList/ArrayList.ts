@@ -37,17 +37,18 @@ export class ArrayList<T> implements IList<T> {
 		}
 		this._array.splice(index, 0, item);
 	}
-	public removeAt(index: number): void {
+	public removeAt(index: number): T {
 		if (index >= this._array.length) {
 			throw new IndexOutOfRangeError(index, this.count());
 		}
-		this._array.splice(index, 1);
+		return this._array.splice(index, 1)[0];
 	}
 	public prepend(item: T): void {
 		this._array.unshift(item);
 	}
-	public append(item: T): void {
+	public append(item: T): number {
 		this._array.push(item);
+		return this.count() - 1;
 	}
 	public head(): T {
 		if (this._array.length === 0) {

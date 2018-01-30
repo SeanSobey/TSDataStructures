@@ -53,26 +53,38 @@ export function spec(listConstructor: ListConstructor<number>): void {
 				list.removeAt(0);
 				assert.deepEqual(Array.from(list), [1, 2, 3]);
 			});
+			it('returns item when removing element at start index', () => {
+				const list = new listConstructor(iterable);
+				assert.deepEqual(list.removeAt(0),0);
+			});
 			it('removes element at middle index', () => {
 				const list = new listConstructor(iterable);
 				list.removeAt(1);
 				assert.deepEqual(Array.from(list), [0, 2, 3]);
+			});
+			it('returns item when removing element at middle index', () => {
+				const list = new listConstructor(iterable);
+				assert.deepEqual(list.removeAt(1), 1);
 			});
 			it('removes element at end index', () => {
 				const list = new listConstructor(iterable);
 				list.removeAt(3);
 				assert.deepEqual(Array.from(list), [0, 1, 2]);
 			});
+			it('returns item when removing element at end index', () => {
+				const list = new listConstructor(iterable);
+				assert.deepEqual(list.removeAt(3), 3);
+			});
 		});
 		describe(listConstructor.prototype.prepend.name, () => {
 			const item = 1;
-			it('with empty list, adds item to start', () => {
+			it('adds item to start when empty', () => {
 				const linkedList = new listConstructor([]);
 				linkedList.prepend(item);
 				const array = Array.from(linkedList);
 				assert.equal(array[0], item);
 			});
-			it('with non-empty list, adds item to start', () => {
+			it('adds item to start', () => {
 				const linkedList = new listConstructor(iterable);
 				linkedList.prepend(item);
 				const array = Array.from(linkedList);
@@ -81,17 +93,25 @@ export function spec(listConstructor: ListConstructor<number>): void {
 		});
 		describe(listConstructor.prototype.append.name, () => {
 			const item = 1;
-			it('with empty list, adds item to end', () => {
-				const linkedList = new listConstructor([]);
+			it('adds item to end when empty', () => {
+				const linkedList = new listConstructor();
 				linkedList.append(item);
 				const array = Array.from(linkedList);
 				assert.equal(array[0], item);
 			});
-			it('with non-empty list, adds item to end', () => {
+			it('returns index when empty', () => {
+				const linkedList = new listConstructor();
+				assert.equal(linkedList.append(item), 0);
+			});
+			it('adds item to end', () => {
 				const linkedList = new listConstructor(iterable);
 				linkedList.append(item);
 				const array = Array.from(linkedList);
 				assert.equal(array[4], item);
+			});
+			it('returns index', () => {
+				const linkedList = new listConstructor(iterable);
+				assert.equal(linkedList.append(item), 4);
 			});
 		});
 		describe(listConstructor.prototype.head.name, () => {

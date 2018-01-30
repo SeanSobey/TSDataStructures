@@ -4,12 +4,20 @@ export interface ListConstructor<T> {
 	new(iterable?: Iterable<T>): IList<T>;
 }
 
-//https://en.wikipedia.org/wiki/List_(abstract_data_type)
+/**
+ * A countable number of ordered items, manipluatable by index.
+ *
+ * @export
+ * @interface IList
+ * @extends {ICollection<T>}
+ * @template T Item type.
+ * @see https://en.wikipedia.org/wiki/List_(abstract_data_type)
+ */
 export interface IList<T> extends ICollection<T> {
 	/**
 	 * Get a element at a specific index.
 	 *
-	 * @returns T
+	 * @returns {T} The item.
 	 * @memberof IList
 	 */
 	element(index: number): T;
@@ -25,9 +33,10 @@ export interface IList<T> extends ICollection<T> {
 	 * Remove an element at a specific index.
 	 *
 	 * @param {number} index The index.
+	 * @returns {T} The item.
 	 * @memberof IList
 	 */
-	removeAt(index: number): void;
+	removeAt(index: number): T;
 	/**
 	 * Add an element to the start of the list.
 	 *
@@ -39,20 +48,21 @@ export interface IList<T> extends ICollection<T> {
 	 * Add an element to the end of the list.
 	 *
 	 * @param {T} item The item.
+	 * @returns {number} The index.
 	 * @memberof IList
 	 */
-	append(item: T): void;
+	append(item: T): number;
 	/**
 	 * Get the element at the start of the list, or throw exception if the list is empty.
 	 *
-	 * @returns {T}
+	 * @returns {T} The item.
 	 * @memberof IList
 	 */
 	head(): T;
 	/**
 	 * Get all the element in the list except the first, or throw exception if the list is empty.
 	 *
-	 * @returns {IList<T>}
+	 * @returns {IList<T>} A new list of items.
 	 * @memberof IList
 	 */
 	tail(): IList<T>;

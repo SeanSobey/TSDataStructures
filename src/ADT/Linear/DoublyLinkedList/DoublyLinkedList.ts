@@ -40,13 +40,14 @@ export class DoublyLinkedList<T> implements IList<T> {
 		const node = this.nodeAt(index - 1);
 		node.next = new DoublyLinkedListNode<T>(node.next, node.previous, item);
 	}
-	public removeAt(index: number): void {
+	public removeAt(index: number): T {
 		if (index === 0) {
 			if (!this._head) {
 				throw new IndexOutOfRangeError(index, this.count());
 			}
+			const item = this._head.data;
 			this._head = this._head.next;
-			return;
+			return item;
 		}
 		const node = this.nodeAt(index);
 		if (node === null) {
@@ -55,22 +56,28 @@ export class DoublyLinkedList<T> implements IList<T> {
 		if (node.previous) {
 			node.previous.next = node.next;
 		}
+		return node.data;
 	}
 	public prepend(item: T): void {
 		this._head = new DoublyLinkedListNode<T>(this._head, null, item);
 	}
-	public append(item: T): void {
+	public append(item: T): number {
 		const iterator = new DoublyLinkedListIterator<T>(this._head);
+		// tslint:disable-next-line:no-let
+		let count = 0;
 		while (iterator.node && iterator.node.next) {
 			iterator.next();
+			count++;
 		}
 		const foot = iterator.node;
 		const node = new DoublyLinkedListNode(null, foot, item);
 		if (foot) {
 			foot.next = node;
+			count++;
 		} else {
 			this._head = node;
 		}
+		return count;
 	}
 	public head(): T {
 		if (this._head === null) {

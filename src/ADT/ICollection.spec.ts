@@ -15,24 +15,28 @@ export function spec(collectionConstructor: CollectionConstructor<number>): void
 		});
 		describe(Symbol.iterator.toString(), () => {
 			it('works', () => {
-				const list = new collectionConstructor(iterable);
-				assert.deepEqual(Array.from(list), iterable);
+				const collection = new collectionConstructor(iterable);
+				assert.deepEqual(Array.from(collection), iterable);
 			});
 		});
 		describe(collectionConstructor.prototype.isEmpty.name, () => {
 			it('returns true when empty', () => {
-				const list = new collectionConstructor([]);
-				assert.equal(list.isEmpty(), true);
+				const collection = new collectionConstructor([]);
+				assert.equal(collection.isEmpty(), true);
 			});
 			it('returns false when not empty', () => {
-				const list = new collectionConstructor([1]);
-				assert.equal(list.isEmpty(), false);
+				const collection = new collectionConstructor([1]);
+				assert.equal(collection.isEmpty(), false);
 			});
 		});
 		describe(collectionConstructor.prototype.count.name, () => {
+			it('returns 0 when empty', () => {
+				const collection = new collectionConstructor([]);
+				assert.equal(collection.count(), 0);
+			});
 			it('returns count', () => {
-				const list = new collectionConstructor([1, 2, 3]);
-				assert.equal(list.count(), 3);
+				const collection = new collectionConstructor([1, 2, 3]);
+				assert.equal(collection.count(), 3);
 			});
 		});
 	});
