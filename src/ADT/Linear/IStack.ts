@@ -15,21 +15,21 @@ export interface StackConstructor<T> {
  */
 export interface IStack<T> extends ICollection<T> {
 	/**
-	 * Add an item.
+	 * Inserts an item at the top of the stack.
 	 *
 	 * @param {T} item The item.
 	 * @memberof IStack
 	 */
 	push(item: T): void;
 	/**
-	 * Remove the top item.
+	 * Removes and returns the item at the top of the stack.
 	 *
 	 * @returns {T} The item.
 	 * @memberof IStack
 	 */
 	pop(): T;
 	/**
-	 * Get the top item without removing it.
+	 * Returns the item at the top of the Stack without removing it.
 	 *
 	 * @returns {T} The item.
 	 * @memberof IStack
