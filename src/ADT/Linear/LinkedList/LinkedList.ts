@@ -1,8 +1,8 @@
 import { IList } from '../IList';
 import { LinkedListNode } from './LinkedListNode';
 import { LinkedListIterator } from './LinkedListIterator';
-import { EmptyListError } from '../EmptyListError';
-import { IndexOutOfRangeError } from '../IndexOutOfRangeError';
+import { EmptyCollectionError } from '../../EmptyCollectionError';
+import { IndexOutOfRangeError } from '../../IndexOutOfRangeError';
 
 export class LinkedList<T> implements IList<T> {
 	// tslint:disable-next-line:readonly-keyword
@@ -72,13 +72,13 @@ export class LinkedList<T> implements IList<T> {
 	}
 	public head(): T {
 		if (this._head === null) {
-			throw new EmptyListError();
+			throw new EmptyCollectionError();
 		}
 		return this._head.data;
 	}
 	public tail(): LinkedList<T> {
 		if (this._head === null) {
-			throw new EmptyListError();
+			throw new EmptyCollectionError();
 		}
 		const tail = new LinkedList<T>();
 		const iterator = new LinkedListIterator<T>(this._head);

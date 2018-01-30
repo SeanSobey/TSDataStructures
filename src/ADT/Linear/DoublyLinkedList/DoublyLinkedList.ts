@@ -1,8 +1,8 @@
 import { IList } from '../IList';
 import { DoublyLinkedListNode } from './DoublyLinkedListNode';
 import { DoublyLinkedListIterator } from './DoublyLinkedListIterator';
-import { EmptyListError } from '../EmptyListError';
-import { IndexOutOfRangeError } from '../IndexOutOfRangeError';
+import { EmptyCollectionError } from '../../EmptyCollectionError';
+import { IndexOutOfRangeError } from '../../IndexOutOfRangeError';
 
 export class DoublyLinkedList<T> implements IList<T> {
 	// tslint:disable-next-line:readonly-keyword
@@ -74,13 +74,13 @@ export class DoublyLinkedList<T> implements IList<T> {
 	}
 	public head(): T {
 		if (this._head === null) {
-			throw new EmptyListError();
+			throw new EmptyCollectionError();
 		}
 		return this._head.data;
 	}
 	public tail(): DoublyLinkedList<T> {
 		if (this._head === null) {
-			throw new EmptyListError();
+			throw new EmptyCollectionError();
 		}
 		const tail = new DoublyLinkedList<T>();
 		const iterator = new DoublyLinkedListIterator<T>(this._head);

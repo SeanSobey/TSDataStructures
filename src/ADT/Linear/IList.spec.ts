@@ -1,8 +1,8 @@
 import * as assert from 'assert';
 
 import { ListConstructor } from './IList';
-import { IndexOutOfRangeError } from './IndexOutOfRangeError';
-import { EmptyListError } from './EmptyListError';
+import { EmptyCollectionError } from '../EmptyCollectionError';
+import { IndexOutOfRangeError } from '../IndexOutOfRangeError';
 
 export function spec(listConstructor: ListConstructor<number>): void {
 	describe(listConstructor.name, () => {
@@ -134,7 +134,7 @@ export function spec(listConstructor: ListConstructor<number>): void {
 			const item = 1;
 			it('throws when empty', () => {
 				const list = new listConstructor();
-				assert.throws(() => list.head(), (error: Error) => error instanceof EmptyListError);
+				assert.throws(() => list.head(), (error: Error) => error instanceof EmptyCollectionError);
 			});
 			it('returns first element', () => {
 				const list = new listConstructor(iterable);
@@ -146,7 +146,7 @@ export function spec(listConstructor: ListConstructor<number>): void {
 			const iterable = [0, 1, 2, 3];
 			it('throws when empty', () => {
 				const list = new listConstructor();
-				assert.throws(() => list.tail(), (error: Error) => error instanceof EmptyListError);
+				assert.throws(() => list.tail(), (error: Error) => error instanceof EmptyCollectionError);
 			});
 			it('returns tail', () => {
 				const list = new listConstructor(iterable);

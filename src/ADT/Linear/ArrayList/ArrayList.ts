@@ -1,6 +1,6 @@
 import { IList } from '../IList';
-import { EmptyListError } from '../EmptyListError';
-import { IndexOutOfRangeError } from '../IndexOutOfRangeError';
+import { EmptyCollectionError } from '../../EmptyCollectionError';
+import { IndexOutOfRangeError } from '../../IndexOutOfRangeError';
 
 export class ArrayList<T> implements IList<T> {
 	// tslint:disable-next-line:readonly-array
@@ -51,13 +51,13 @@ export class ArrayList<T> implements IList<T> {
 	}
 	public head(): T {
 		if (this._array.length === 0) {
-			throw new EmptyListError();
+			throw new EmptyCollectionError();
 		}
 		return this._array[0];
 	}
 	public tail(): ArrayList<T> {
 		if (this._array.length === 0) {
-			throw new EmptyListError();
+			throw new EmptyCollectionError();
 		}
 		return new ArrayList(this._array.slice(1, this._array.length));
 	}
