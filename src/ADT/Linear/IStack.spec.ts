@@ -26,7 +26,7 @@ export function spec(stackConstructor: StackConstructor<number>): void {
 				const stack = new stackConstructor();
 				assert.throws(() => stack.pop(), (error: Error) => error instanceof EmptyCollectionError);
 			});
-			it('returns top item', () => {
+			it('returns last item', () => {
 				const stack = new stackConstructor(iterable);
 				assert.equal(stack.pop(), 3);
 			});
@@ -42,7 +42,7 @@ export function spec(stackConstructor: StackConstructor<number>): void {
 				const stack = new stackConstructor();
 				assert.throws(() => stack.peek(), (error: Error) => error instanceof EmptyCollectionError);
 			});
-			it('returns top item', () => {
+			it('returns last item', () => {
 				const stack = new stackConstructor(iterable);
 				assert.equal(stack.peek(), 3);
 			});
