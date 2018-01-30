@@ -16,12 +16,20 @@ export abstract class Queue<T> implements IQueue<T> {
 		return this._list.count();
 	}
 	public enqueue(item: T): void {
-		throw new Error('Method not implemented.');
+		this._list.prepend(item);
 	}
 	public dequeue(): T {
-		throw new Error('Method not implemented.');
+		const count = this._list.count();
+		if (count === 0) {
+			throw new EmptyCollectionError();
+		}
+		return this._list.removeAt(0);
 	}
 	public peek(): T {
-		throw new Error('Method not implemented.');
+		const count = this._list.count();
+		if (count === 0) {
+			throw new EmptyCollectionError();
+		}
+		return this._list.element(0);
 	}
 }
