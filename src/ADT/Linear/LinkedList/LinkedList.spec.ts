@@ -1,4 +1,6 @@
 import { LinkedList } from './LinkedList';
-import { spec } from '../IList.spec';
+import { spec as collectionSpec } from '../../ICollection.spec';
+import { spec as listSpec } from '../IList.spec';
 
-spec(LinkedList);
+collectionSpec(LinkedList);
+listSpec(LinkedList);

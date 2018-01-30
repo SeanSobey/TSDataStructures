@@ -5,40 +5,9 @@ import { EmptyCollectionError } from '../EmptyCollectionError';
 import { IndexOutOfRangeError } from '../IndexOutOfRangeError';
 
 export function spec(listConstructor: ListConstructor<number>): void {
-	describe(listConstructor.name, () => {
-		describe(listConstructor.name, () => {
-			it('works with no parameters', () => {
-				assert.ok(new listConstructor());
-			});
-			it('works with iterable', () => {
-				assert.ok(new listConstructor([1, 2, 3]));
-			});
-		});
-		describe(Symbol.iterator.toString(), () => {
-			const iterable = [1, 2, 3];
-			it('works', () => {
-				const list = new listConstructor(iterable);
-				assert.deepEqual(Array.from(list), iterable);
-			});
-		});
-		describe(listConstructor.prototype.isEmpty.name, () => {
-			it('returns true when empty', () => {
-				const list = new listConstructor([]);
-				assert.equal(list.isEmpty(), true);
-			});
-			it('returns false when not empty', () => {
-				const list = new listConstructor([1]);
-				assert.equal(list.isEmpty(), false);
-			});
-		});
-		describe(listConstructor.prototype.count.name, () => {
-			it('returns count', () => {
-				const list = new listConstructor([1, 2, 3]);
-				assert.equal(list.count(), 3);
-			});
-		});
+	describe(`${listConstructor.name} as IList,`, () => {
+		const iterable = [0, 1, 2, 3];
 		describe(listConstructor.prototype.element.name, () => {
-			const iterable = [0, 1, 2, 3];
 			it('throws when out of range', () => {
 				const list = new listConstructor();
 				assert.throws(() => list.element(0), (error: Error) => error instanceof IndexOutOfRangeError);
@@ -53,7 +22,6 @@ export function spec(listConstructor: ListConstructor<number>): void {
 			});
 		});
 		describe(listConstructor.prototype.insertAt.name, () => {
-			const iterable = [0, 1, 2, 3];
 			const item = 4;
 			it('throws when out of range', () => {
 				const list = new listConstructor();
@@ -76,7 +44,6 @@ export function spec(listConstructor: ListConstructor<number>): void {
 			});
 		});
 		describe(listConstructor.prototype.removeAt.name, () => {
-			const iterable = [0, 1, 2, 3];
 			it('throws when out of range', () => {
 				const list = new listConstructor();
 				assert.throws(() => list.removeAt(1), (error: Error) => error instanceof IndexOutOfRangeError);
@@ -98,7 +65,6 @@ export function spec(listConstructor: ListConstructor<number>): void {
 			});
 		});
 		describe(listConstructor.prototype.prepend.name, () => {
-			const iterable = [0, 1, 2, 3];
 			const item = 1;
 			it('with empty list, adds item to start', () => {
 				const linkedList = new listConstructor([]);
@@ -114,7 +80,6 @@ export function spec(listConstructor: ListConstructor<number>): void {
 			});
 		});
 		describe(listConstructor.prototype.append.name, () => {
-			const iterable = [0, 1, 2, 3];
 			const item = 1;
 			it('with empty list, adds item to end', () => {
 				const linkedList = new listConstructor([]);
@@ -130,7 +95,6 @@ export function spec(listConstructor: ListConstructor<number>): void {
 			});
 		});
 		describe(listConstructor.prototype.head.name, () => {
-			const iterable = [0, 1, 2, 3];
 			const item = 1;
 			it('throws when empty', () => {
 				const list = new listConstructor();
@@ -143,7 +107,6 @@ export function spec(listConstructor: ListConstructor<number>): void {
 			});
 		});
 		describe(listConstructor.prototype.tail.name, () => {
-			const iterable = [0, 1, 2, 3];
 			it('throws when empty', () => {
 				const list = new listConstructor();
 				assert.throws(() => list.tail(), (error: Error) => error instanceof EmptyCollectionError);

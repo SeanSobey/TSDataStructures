@@ -1,4 +1,6 @@
 import { ArrayList } from './ArrayList';
-import { spec } from '../IList.spec';
+import { spec as collectionSpec } from '../../ICollection.spec';
+import { spec as listSpec } from '../IList.spec';
 
-spec(ArrayList);
+collectionSpec(ArrayList);
+listSpec(ArrayList);
