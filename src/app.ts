@@ -19,7 +19,7 @@ const scenarios = [
 					list.append(Math.random());
 				}
 				return { list };
-			}, ({ list }, interval) => {
+			}, ({ list }) => {
 				list.count();
 				}, options),
 			bigO('Array List', (interval) => {
@@ -28,7 +28,7 @@ const scenarios = [
 					list.append(Math.random());
 				}
 				return { list };
-			}, ({ list }, interval) => {
+			}, ({ list }) => {
 				list.count();
 			}, options)
 		]
@@ -36,7 +36,7 @@ const scenarios = [
 	{
 		title: 'Append',
 		results: [
-			bigO('Linked List', (interval) => {
+			bigO('Linked List', () => {
 				const list = new LinkedList();
 				return { list };
 			}, ({ list }, interval) => {
@@ -44,7 +44,7 @@ const scenarios = [
 					list.append(Math.random());
 				}
 			}, options),
-			bigO('Array List', (interval) => {
+			bigO('Array List', () => {
 				const list = new ArrayList();
 				return { list };
 			}, ({ list }, interval) => {
