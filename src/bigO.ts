@@ -71,32 +71,40 @@ interface BigOScenario {
 	readonly results: ReadonlyArray<BigOResult>;
 }
 
-export function writeReport(pageTitle: string, scenarios: ReadonlyArray<BigOScenario>): string {
+interface BigOScenarioSet {
+	readonly title: string;
+	readonly scenarios: ReadonlyArray<BigOScenario>;
+}
+
+export function writeReport(pageTitle: string, scenarioSets: ReadonlyArray<BigOScenarioSet>): string {
 
 	const chartColors = [
 		'rgb(255, 99, 132)', //red
-		'rgb(255, 159, 64)', //orange
-		'rgb(255, 205, 86)', //yellow
 		'rgb(75, 192, 192)', //green
 		'rgb(54, 162, 235)', //blue
+		'rgb(255, 205, 86)', //yellow
+		'rgb(255, 0, 255)', //magenta
+		'rgb(0, 255, 255)', //cyan
 		'rgb(153, 102, 255)', //purple
+		'rgb(255, 159, 64)', //orange
 		'rgb(201, 203, 207)', //grey
 	];
-	const cards = scenarios.map((scenario, scenarioIndex) => {
-		const dataSets = scenario.results.map((result, resultIndex) => {
-			const data: ReadonlyArray<{ readonly x: number; readonly y: number; }> = result.timings.map((timing) => ({
-				x: timing.interval,
-				y: timing.duration
-			}));
-			return {
-				label: result.label,
-				fill: false,
-				backgroundColor: chartColors[resultIndex],
-				borderColor: chartColors[resultIndex],
-				data
-			};
-		});
-		return `
+	const rows = scenarioSets.map((scenarioSet/*, scenarioSetIndex*/) => {
+		const cards = scenarioSet.scenarios.map((scenario, scenarioIndex) => {
+			const dataSets = scenario.results.map((result, resultIndex) => {
+				const data: ReadonlyArray<{ readonly x: number; readonly y: number; }> = result.timings.map((timing) => ({
+					x: timing.interval,
+					y: timing.duration
+				}));
+				return {
+					label: result.label,
+					fill: false,
+					backgroundColor: chartColors[resultIndex],
+					borderColor: chartColors[resultIndex],
+					data
+				};
+			});
+			return `
 				<div class="col-12">
 					<div class="card">
 						<div class="card-body">
@@ -148,6 +156,12 @@ export function writeReport(pageTitle: string, scenarios: ReadonlyArray<BigOScen
 					</script>
 				</div>
 			`;
+		});
+		return `
+			<h1 class="display-3">${scenarioSet.title}</h1>
+			<div class="row">
+				${cards.join('\n')}
+			</div>`;
 	});
 	const html = `<!DOCTYPE html>
 	<html lang="">
@@ -194,9 +208,7 @@ export function writeReport(pageTitle: string, scenarios: ReadonlyArray<BigOScen
 			<a class="navbar-brand" href="#">${pageTitle}</a>
 		</nav>
 
-		<div class="container">
-			<div class="row">${cards.join('\n')}</div>
-		</div>
+		<div class="container">${rows.join('\n')}</div>
 	</body>
 	</html>`;
 	return html;

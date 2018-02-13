@@ -1,63 +1,114 @@
-import { LinkedList, ArrayList } from './ADT/';
+import { LinkedList, DoublyLinkedList, ArrayList } from './ADT/';
 import { bigO, writeReport } from './bigO';
 import { writeFile } from 'fs';
 import { promisify } from 'util';
 
 const options = {
 	startInterval: 0,
-	endInterval: 1000,
-	intervalStep: 100,
+	endInterval: 10000,
+	intervalStep: 200,
 	runCount: 5
 };
-const scenarios = [
+const scenarioSets = [
 	{
-		title: 'Count',
-		results: [
-			bigO('Linked List', (interval) => {
-				const list = new LinkedList();
-				for (let count = 0; count < interval; count++) {
-					list.append(Math.random());
-				}
-				return { list };
-			}, ({ list }) => {
-				list.count();
-				}, options),
-			bigO('Array List', (interval) => {
-				const list = new ArrayList();
-				for (let count = 0; count < interval; count++) {
-					list.append(Math.random());
-				}
-				return { list };
-			}, ({ list }) => {
-				list.count();
-			}, options)
+		title: 'IList&lt;number&gt;',
+		scenarios: [
+			{
+				title: 'Count',
+				results: [
+					bigO('Linked List', (interval) => {
+						const list = new LinkedList();
+						for (let count = 0; count < interval; count++) {
+							list.append(Math.random());
+						}
+						return { list };
+					}, ({ list }) => {
+						list.count();
+					}, options),
+					bigO('Doubly Linked List', (interval) => {
+						const list = new DoublyLinkedList();
+						for (let count = 0; count < interval; count++) {
+							list.append(Math.random());
+						}
+						return { list };
+					}, ({ list }) => {
+						list.count();
+					}, options),
+					bigO('Array List', (interval) => {
+						const list = new ArrayList();
+						for (let count = 0; count < interval; count++) {
+							list.append(Math.random());
+						}
+						return { list };
+					}, ({ list }) => {
+						list.count();
+					}, options)
+				]
+			},
+			{
+				title: 'Append',
+				results: [
+					bigO('Linked List', () => {
+						const list = new LinkedList();
+						return { list };
+					}, ({ list }, interval) => {
+						for (let count = 0; count < interval; count++) {
+							list.append(Math.random());
+						}
+					}, options),
+					bigO('Doubly Linked List', () => {
+						const list = new DoublyLinkedList();
+						return { list };
+					}, ({ list }, interval) => {
+						for (let count = 0; count < interval; count++) {
+							list.append(Math.random());
+						}
+					}, options),
+					bigO('Array List', () => {
+						const list = new ArrayList();
+						return { list };
+					}, ({ list }, interval) => {
+						for (let count = 0; count < interval; count++) {
+							list.append(Math.random());
+						}
+					}, options)
+				]
+			},
+			{
+				title: 'Prepend',
+				results: [
+					bigO('Linked List', () => {
+						const list = new LinkedList();
+						return { list };
+					}, ({ list }, interval) => {
+						for (let count = 0; count < interval; count++) {
+							list.prepend(Math.random());
+						}
+					}, options),
+					bigO('DoublyLinked List', () => {
+						const list = new DoublyLinkedList();
+						return { list };
+					}, ({ list }, interval) => {
+						for (let count = 0; count < interval; count++) {
+							list.prepend(Math.random());
+						}
+					}, options),
+					bigO('Array List', () => {
+						const list = new ArrayList();
+						return { list };
+					}, ({ list }, interval) => {
+						for (let count = 0; count < interval; count++) {
+							list.prepend(Math.random());
+						}
+					}, options)
+				]
+			},
 		]
-	},
-	{
-		title: 'Append',
-		results: [
-			bigO('Linked List', () => {
-				const list = new LinkedList();
-				return { list };
-			}, ({ list }, interval) => {
-				for (let count = 0; count < interval; count++) {
-					list.append(Math.random());
-				}
-			}, options),
-			bigO('Array List', () => {
-				const list = new ArrayList();
-				return { list };
-			}, ({ list }, interval) => {
-				for (let count = 0; count < interval; count++) {
-					list.append(Math.random());
-				}
-			}, options)
-		]
-	},
+	}
 ];
 
 const reportPath = 'C:\\Users\\seans\\Documents\\GitHub\\SeanSobey\\TSDataStructures\\reports\\bigO.html';
-const html = writeReport('BigO', scenarios);
+const html = writeReport('BigO', scenarioSets);
 const writeFileAsync = promisify(writeFile);
 writeFileAsync(reportPath, html, 'utf-8')
 	.then(() => console.log('done'))
