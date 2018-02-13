@@ -30,6 +30,6 @@ export abstract class Stack<T> implements IStack<T> {
 		if (count === 0) {
 			throw new EmptyCollectionError();
 		}
-		return this._list.element(count - 1);
+		return this._list.elementAt(count - 1);
 	}
 }

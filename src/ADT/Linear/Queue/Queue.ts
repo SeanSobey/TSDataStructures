@@ -30,6 +30,6 @@ export abstract class Queue<T> implements IQueue<T> {
 		if (count === 0) {
 			throw new EmptyCollectionError();
 		}
-		return this._list.element(0);
+		return this._list.elementAt(0);
 	}
 }

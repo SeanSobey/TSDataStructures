@@ -30,7 +30,7 @@ export class DoublyLinkedList<T> implements IList<T> {
 		}
 		return count;
 	}
-	public element(index: number): T {
+	public elementAt(index: number): T {
 		return this.nodeAt(index).data;
 	}
 	public insertAt(index: number, item: T): void {

@@ -20,7 +20,7 @@ export interface IList<T> extends ICollection<T> {
 	 * @returns {T} The item.
 	 * @memberof IList
 	 */
-	element(index: number): T;
+	elementAt(index: number): T;
 	/**
 	 * Insert an element at a specific index.
 	 *

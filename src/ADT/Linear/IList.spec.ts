@@ -10,15 +10,15 @@ export function spec(listConstructor: ListConstructor<number>): void {
 		describe(listConstructor.prototype.element.name, () => {
 			it('throws when out of range', () => {
 				const list = new listConstructor();
-				assert.throws(() => list.element(0), (error: Error) => error instanceof IndexOutOfRangeError);
+				assert.throws(() => list.elementAt(0), (error: Error) => error instanceof IndexOutOfRangeError);
 			});
 			it('returns element at start index', () => {
 				const list = new listConstructor(iterable);
-				assert.equal(list.element(0), 0);
+				assert.equal(list.elementAt(0), 0);
 			});
 			it('returns element at end index', () => {
 				const list = new listConstructor(iterable);
-				assert.equal(list.element(3), 3);
+				assert.equal(list.elementAt(3), 3);
 			});
 		});
 		describe(listConstructor.prototype.insertAt.name, () => {

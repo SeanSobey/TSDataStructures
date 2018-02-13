@@ -4,4 +4,3 @@ import { spec as listSpec } from '../IList.spec';
 
 collectionSpec(DoublyLinkedList);
 listSpec(DoublyLinkedList);
-

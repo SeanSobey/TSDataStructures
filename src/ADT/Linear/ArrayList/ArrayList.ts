@@ -25,7 +25,7 @@ export class ArrayList<T> implements IList<T> {
 	public count(): number {
 		return this._array.length;
 	}
-	public element(index: number): T {
+	public elementAt(index: number): T {
 		if (index >= this._array.length) {
 			throw new IndexOutOfRangeError(index, this.count());
 		}

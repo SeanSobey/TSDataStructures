@@ -8,4 +8,3 @@ export interface IGraph<T> extends ICollection<INode<T>> {
 	addEdge(x: INode<T>, y: INode<T>): void;
 	removeEdge(x: INode<T>, y: INode<T>): void;
 }
-
