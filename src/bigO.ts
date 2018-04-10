@@ -40,7 +40,7 @@ export function bigO<T>(label: string, setupFn: BigOSetupFunction<T>, execFn: Bi
 	for (let interval = startInterval; interval < endInterval; interval += intervalStep) {
 
 		const durations: Array<number> = [];
-		for (let count = 1; count < runCount; count++) {
+		for (let count = 0; count < runCount; count++) {
 
 			const data = setupFn(interval);
 			const start = performance.now();
@@ -60,6 +60,9 @@ function middle(values: ReadonlyArray<number>): number {
 
 	const len = values.length;
 	const half = Math.floor(len / 2);
+	if (len === 1) {
+		return values[0];
+	}
 	if (len % 2) {
 		return (values[half - 1] + values[half]) / 2.0;
 	}
