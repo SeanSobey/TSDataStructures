@@ -8,6 +8,7 @@
 		"prebuild": "del-cli ./dist",
 		"build": "tsc",
 		"test": "mocha --opts ./mocha.opts dist/**/*.spec.js",
+		"debug": "node --inspect-brk=33295 --nolazy dist/app.js",
 		"debug-test": "node --inspect-brk=33295 --nolazy node_modules/mocha/bin/_mocha --opts ./mocha.opts dist/**/*.spec.js",
 		"watch-build": "tsc --watch",
 		"watch-test": "mocha --watch --opts ./mocha.opts dist/**/*.spec.js"
