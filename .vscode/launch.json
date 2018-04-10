@@ -5,6 +5,26 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
+			"name": "Launch App",
+			"type": "node",
+			"request": "launch",
+			"protocol": "inspector",
+			"cwd": "${workspaceRoot}",
+			"runtimeExecutable": "npm",
+			"windows": {
+				"runtimeExecutable": "npm.cmd"
+			},
+			"runtimeArgs": [
+				"run-script",
+				"debug"
+			],
+			"timeout": 50000,
+			"port": 33295,
+			"env": {
+				"NODE_ENV": "production"
+			}
+		},
+		{
 			"name": "Launch Tests",
 			"type": "node",
 			"request": "launch",
