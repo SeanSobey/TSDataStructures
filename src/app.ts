@@ -2,6 +2,7 @@ import { LinkedList, DoublyLinkedList, ArrayList } from './ADT/';
 import { bigO, writeReport } from './bigO';
 import { writeFile } from 'fs';
 import { promisify } from 'util';
+import { join } from 'path';
 
 const options = {
 	startInterval: 0,
@@ -107,7 +108,7 @@ const scenarioSets = [
 	}
 ];
 
-const reportPath = 'C:\\Users\\seans\\Documents\\GitHub\\SeanSobey\\TSDataStructures\\reports\\bigO.html';
+const reportPath = join('.', 'reports', 'bigO.html');
 const html = writeReport('BigO', scenarioSets);
 const writeFileAsync = promisify(writeFile);
 writeFileAsync(reportPath, html, 'utf-8')
